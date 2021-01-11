@@ -1,0 +1,33 @@
+﻿<Window x:Class="WhatForDinner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WhatForDinner"
+        mc:Ignorable="d" x:Name="uc"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Button  Content="解析并添加" Click="AddNewItem_Click" HorizontalAlignment="Left" Margin="37,133,0,0" VerticalAlignment="Top" Width="100" Height="41"/>
+        <TextBox x:Name="newItemString" HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" Text="米线，麻辣烫，黄焖鸡，炒菜，饭团，麻辣香锅，拌面" VerticalAlignment="Top" Width="200"/>
+        <Button x:Name="button1" Content="创建" Click="Create_Click" HorizontalAlignment="Left" Margin="37,209,0,0" VerticalAlignment="Top" Width="100" Height="36"/>
+        <ScrollViewer Grid.Column="1" Grid.ColumnSpan="2">
+            <ItemsControl ItemsSource="{Binding ItemSource,ElementName=uc}" >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding .}" Click="RemoveItem_Click"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+        <TextBox x:Name="outputPath" HorizontalAlignment="Left" Height="67" Margin="0,352,0,0" TextWrapping="Wrap" Text="D://mygif.gif" VerticalAlignment="Top" Width="200"/>
+    </Grid>
+</Window>
